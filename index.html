@@ -1,4 +1,17 @@
-<head></head>
+<head>
+  <meta charset="UTF-8">
+</head>
 <body>
   <h1>問題アプリ</h1>
+  <p id="question"></p>
+  <button onclick="answer(true)">正解</button>
+  <button onclick="answer(false)">不正解</button>
+
+  <script>
+    const question = "森を使った言葉を書こう";
+    document.getElementByid("question").textContent = question;
+
+    function answer(result) {
+      console.log(result);
+  </script>
 </body>
