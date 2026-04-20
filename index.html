@@ -64,6 +64,23 @@ button[onclick^="selectUnit"] {
 .okurigana {
   text-decoration: underline wavy;
 }
+
+#progress {
+  background: #ddd;
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+#progress-bar {
+  height: 20px;
+  background: linear-gradient(to right, #4CAF50, #8BC34A);
+  width: 0%;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+}
+
 </style>
 </head>
 <body>
@@ -73,9 +90,9 @@ button[onclick^="selectUnit"] {
   <br>
   <button onclick="showWeak()">苦手だけ</button>
 <button onclick="showAll()">すべて</button>
-
+<div id="progress"></div>
   <p id="question"></p>
-
+<div id="result"></div>
 <script>
 const units = {
   "1": [
@@ -120,8 +137,17 @@ function answer(id, result) {
   data[id] = result;
 
   localStorage.setItem("answers", JSON.stringify(data));
-
+  // ★ここ追加
+  const resultDiv = document.getElementById("result");
+  if (result) {
+    resultDiv.innerHTML = "🔥 正解！";
+    resultDiv.className = "correct";
+  } else {
+    resultDiv.innerHTML = "💥 不正解！";
+    resultDiv.className = "wrong";
+  }
   console.log(id, result);
+  updateProgress();
 }
 
 function selectUnit(unit) {
@@ -141,7 +167,24 @@ function showWeak() {
 function showAll() {
   renderQuestions(questions);
 }
+function updateProgress() {
+  const data = JSON.parse(localStorage.getItem("answers") || "{}");
 
+  const total = questions.length;
+  let answered = 0;
+
+  questions.forEach(q => {
+    if (data[q.id] !== undefined) {
+      answered++;
+    }
+  });
+
+  const percent = Math.floor((answered / total) * 100);
+
+  document.getElementById("progress").innerHTML =
+    `<div id="progress-bar" style="width:${percent}%">${answered}/${total}</div>`;
+}
 // 初期表示
 renderQuestions(questions);
+updateProgress();
 </script>
