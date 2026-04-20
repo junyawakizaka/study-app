@@ -3,24 +3,31 @@
 </head>
 <body>
   <h1>問題アプリ</h1>
+  <button onclick="selectUnit('1')">①</button>
+<button onclick="selectUnit('2')">②</button>
   <p id="question"></p>
   <button onclick="answer(true)">正解</button>
   <button onclick="answer(false)">不正解</button>
 
   <script>
     let currentIndex = 0;
-    const questions = [
-      { id: "q1", text: "森を使った言葉を書こう" },
-      { id: "q2", text: "海を使った言葉を書こう" },
-      { id: "q3", text: "山を使った言葉を書こう" }
-    ];
+const units = {
+  "1": [
+    { id: "q1", text: "やまにのぼる", answer: ["山", "登る"] },
+    { id: "q2", text: "うみにいく", answer: ["海", "行く"] }
+  ],
+  "2": [
+    { id: "q3", text: "かわであそぶ", answer: ["川", "遊ぶ"] }
+  ]
+};
     showQuestion();
 
     const last = localStorage.getItem("lastResult");
     console.log("前回の結果：", last);
 
     function showQuestion() {
-      const q = questions[currentIndex];
+let currentUnit = "1";
+let questions = units[currentUnit];
       document.getElementById("question").textContent = q.text;
     }
     
@@ -39,5 +46,13 @@
     }
       
     }
+
+    function selectUnit(unit) {
+  currentUnit = unit;
+  questions = units[unit];
+  currentIndex = 0;
+  showQuestion();
+}
+    
   </script>
 </body>
