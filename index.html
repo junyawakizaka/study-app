@@ -92,7 +92,7 @@ button[onclick^="selectUnit"] {
 <button onclick="showAll()">すべて</button>
 <div id="progress"></div>
   <p id="question"></p>
-<div id="result"></div>
+
 <script>
 const units = {
   "1": [
@@ -114,14 +114,23 @@ function formatText(text) {
 }
 
 function renderQuestions(list) {
+  const data = JSON.parse(localStorage.getItem("answers") || "{}");
+
   let html = "";
 
   list.forEach((q, index) => {
     const formatted = formatText(q.text);
 
+    let mark = "";
+    if (data[q.id] === true) {
+      mark = "⭕";
+    } else if (data[q.id] === false) {
+      mark = "❌";
+    }
+
     html += `
       <div>
-        <p>${index + 1}. ${formatted}</p>
+        <p>${index + 1}. ${formatted} ${mark}</p>
         <button onclick="answer('${q.id}', true)">正解</button>
         <button onclick="answer('${q.id}', false)">不正解</button>
       </div>
@@ -148,6 +157,7 @@ function answer(id, result) {
   }
   console.log(id, result);
   updateProgress();
+  renderQuestions(questions);
 }
 
 function selectUnit(unit) {
