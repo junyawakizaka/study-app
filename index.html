@@ -1,5 +1,13 @@
 <head>
   <meta charset="UTF-8">
+  <style>
+.kanji {
+  text-decoration: underline;
+}
+.okurigana {
+  text-decoration: underline wavy;
+}
+</style>
 </head>
 <body>
   <h1>問題アプリ</h1>
@@ -14,11 +22,11 @@ let currentIndex = 0;
 
 const units = {
   "1": [
-    { id: "q1", text: "やまにのぼる", answer: ["山", "登る"] },
-    { id: "q2", text: "うみにいく", answer: ["海", "行く"] }
+    { id: "q1", text: "$やま$に#のぼる#", answer: ["山", "登る"] },
+    { id: "q2", text: "$うみ$に#いく#", answer: ["海", "行く"] }
   ],
   "2": [
-    { id: "q3", text: "かわであそぶ", answer: ["川", "遊ぶ"] }
+    { id: "q3", text: "$かわ$で#あそぶ#", answer: ["川", "遊ぶ"] }
   ]
 };
 
@@ -29,8 +37,11 @@ let questions = units[currentUnit];
 showQuestion();
 
 function showQuestion() {
-  const q = questions[currentIndex]; // ★これが必要
-  document.getElementById("question").textContent = q.text;
+  const q = questions[currentIndex];
+  const html = formatText(q.text);
+  document.getElementById("question").innerHTML = html;
+
+  document.getElementById("answer").innerHTML = "";
 }
 
 function answer(result) {
@@ -55,4 +66,11 @@ function selectUnit(unit) {
   currentIndex = 0;
   showQuestion();
 }
+
+    function formatText(text) {
+  return text
+    .replace(/\$(.*?)\$/g, '<span class="kanji">$1</span>')
+    .replace(/#(.*?)#/g, '<span class="okurigana">$1</span>');
+}
+    
 </script>
