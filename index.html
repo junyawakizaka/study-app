@@ -8,17 +8,36 @@
   <button onclick="answer(false)">不正解</button>
 
   <script>
-    const questionId = "q1";
-    const question = "森を使った言葉を書こう";
-    document.getElementById("question").textContent = question;
+    let currentIndex = 0;
+    const questions = [
+      { id: "q1", text: "森を使った言葉を書こう" },
+      { id: "q2", text: "海を使った言葉を書こう" },
+      { id: "q3", text: "山を使った言葉を書こう" }
+    ];
+    showQuestion();
 
     const last = localStorage.getItem("lastResult");
     console.log("前回の結果：", last);
+
+    function showQuestion() {
+      const q = questions[currentIndex];
+      document.getElementById("question").textContent = q.text;
+    }
     
     function answer(result) {
       const data = JSON.parse(localStorage.getItem("answers") || "{}");
-      data[questionId] = result;
+      const q = questions[currentIndex];
+      data[q.id] = result;
       localStorage.setItem("answers", JSON.stringify(data));
+
+      currentIndex++;
+
+      if (currentIndex < questions.length) {
+      showQuestion();
+    } else {
+      alert("おわり！");
+    }
+      
     }
   </script>
 </body>
