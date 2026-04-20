@@ -16,7 +16,7 @@
     console.log("前回の結果：", last);
     
     function answer(result) {
-      const data = JSON.parse(localStrage.getItem("answers") || "{}");
+      const data = JSON.parse(localStorage.getItem("answers") || "{}");
       data[questionId] = result;
       localStorage.setItem("answers", JSON.stringify(data));
     }
