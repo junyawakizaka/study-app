@@ -11,8 +11,12 @@
     const question = "森を使った言葉を書こう";
     document.getElementById("question").textContent = question;
 
+    const last = localStorage.getItem("lastResult");
+    console.log("前回の結果：", last);
+    
     function answer(result) {
       console.log(result);
+      localStorage.setItem("lastResult", result);
     }
   </script>
 </body>
