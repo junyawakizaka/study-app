@@ -16,11 +16,8 @@
   <button onclick="selectUnit('1')">①</button>
 <button onclick="selectUnit('2')">②</button>
   <p id="question"></p>
-<button onclick="answer(${index}, true)">正解</button>
 
-  <script>
-let currentIndex = 0;
-
+<script>
 const units = {
   "1": [
     { id: "q1", text: "$やま$に#のぼる#", answer: ["山", "登る"] },
@@ -31,63 +28,13 @@ const units = {
   ]
 };
 
-// ★ここを追加（外に出す）
 let currentUnit = "1";
 let questions = units[currentUnit];
 
-showQuestion();
-
-function showQuestion() {
-  let html = "";
-
-  questions.forEach((q, index) => {
-    const formatted = formatText(q.text);
-
-    html += `
-      <div>
-        <p>${index + 1}. ${formatted}</p>
-        <button onclick="answer(${index}, true)">正解</button>
-        <button onclick="answer(${index}, false)">不正解</button>
-      </div>
-    `;
-  });
-
-  document.getElementById("question").innerHTML = html;
-}
-
-function answer(index, result) {
-  const data = JSON.parse(localStorage.getItem("answers") || "{}");
-  const q = questions[index];
-
-  data[q.id] = result;
-  localStorage.setItem("answers", JSON.stringify(data));
-
-  console.log(q.id, result);
-}
-
-function selectUnit(unit) {
-  currentUnit = unit;
-  questions = units[unit];
-  currentIndex = 0;
-  showQuestion();
-}
-
-    function formatText(text) {
+function formatText(text) {
   return text
     .replace(/\$(.*?)\$/g, '<span class="kanji">$1</span>')
     .replace(/#(.*?)#/g, '<span class="okurigana">$1</span>');
-}
-
-function showWeak() {
-  const data = JSON.parse(localStorage.getItem("answers") || "{}");
-
-  const weakQuestions = questions.filter(q => data[q.id] === false);
-
-  renderQuestions(weakQuestions);
-}
-
-    function showAll() {
-  renderQuestions(questions);
 }
 
 function renderQuestions(list) {
@@ -108,6 +55,34 @@ function renderQuestions(list) {
   document.getElementById("question").innerHTML = html;
 }
 
+function answer(id, result) {
+  const data = JSON.parse(localStorage.getItem("answers") || "{}");
+
+  data[id] = result;
+
+  localStorage.setItem("answers", JSON.stringify(data));
+
+  console.log(id, result);
+}
+
+function selectUnit(unit) {
+  currentUnit = unit;
+  questions = units[unit];
+  renderQuestions(questions);
+}
+
+function showWeak() {
+  const data = JSON.parse(localStorage.getItem("answers") || "{}");
+
+  const weakQuestions = questions.filter(q => data[q.id] === false);
+
+  renderQuestions(weakQuestions);
+}
+
+function showAll() {
+  renderQuestions(questions);
+}
+
+// 初期表示
 renderQuestions(questions);
-    
 </script>
