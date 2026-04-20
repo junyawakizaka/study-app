@@ -11,6 +11,8 @@
 </head>
 <body>
   <h1>問題アプリ</h1>
+  <button onclick="showWeak()">苦手だけ</button>
+<button onclick="showAll()">すべて</button>
   <button onclick="selectUnit('1')">①</button>
 <button onclick="selectUnit('2')">②</button>
   <p id="question"></p>
@@ -75,5 +77,37 @@ function selectUnit(unit) {
     .replace(/\$(.*?)\$/g, '<span class="kanji">$1</span>')
     .replace(/#(.*?)#/g, '<span class="okurigana">$1</span>');
 }
+
+function showWeak() {
+  const data = JSON.parse(localStorage.getItem("answers") || "{}");
+
+  const weakQuestions = questions.filter(q => data[q.id] === false);
+
+  renderQuestions(weakQuestions);
+}
+
+    function showAll() {
+  renderQuestions(questions);
+}
+
+function renderQuestions(list) {
+  let html = "";
+
+  list.forEach((q, index) => {
+    const formatted = formatText(q.text);
+
+    html += `
+      <div>
+        <p>${index + 1}. ${formatted}</p>
+        <button onclick="answer('${q.id}', true)">正解</button>
+        <button onclick="answer('${q.id}', false)">不正解</button>
+      </div>
+    `;
+  });
+
+  document.getElementById("question").innerHTML = html;
+}
+
+renderQuestions(questions);
     
 </script>
