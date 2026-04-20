@@ -1,9 +1,66 @@
 <head>
   <meta charset="UTF-8">
-  <style>
+<style>
+body {
+  font-family: sans-serif;
+  background: linear-gradient(to bottom, #87ceeb, #ffffff);
+  margin: 0;
+  padding: 10px;
+}
+
+/* タイトル */
+h1 {
+  text-align: center;
+  color: #ff6600;
+}
+
+/* ボタン共通 */
+button {
+  font-size: 16px;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* 正解 */
+button[onclick*="true"] {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* 不正解 */
+button[onclick*="false"] {
+  background-color: #f44336;
+  color: white;
+}
+
+/* ユニットボタン */
+button[onclick^="selectUnit"] {
+  background-color: #2196F3;
+  color: white;
+}
+
+/* 問題カード */
+#question div {
+  background: white;
+  border-radius: 12px;
+  padding: 10px;
+  margin: 10px 0;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* 問題文 */
+#question p {
+  font-size: 18px;
+}
+
+/* 下線 */
 .kanji {
   text-decoration: underline;
 }
+
+/* 波線 */
 .okurigana {
   text-decoration: underline wavy;
 }
