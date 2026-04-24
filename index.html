@@ -72,6 +72,7 @@ button[onclick^="show"] {
 }
 </style>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
 </head>
 <body>
   <h1>問題アプリ</h1>
@@ -159,6 +160,15 @@ function answer(id, result) {
   if (result) {
     resultDiv.innerHTML = "🔥 正解！";
     resultDiv.className = "correct";
+
+    setTimeout(() => {
+  confetti({
+    particleCount: 80,
+    spread: 70,
+    origin: { y: 0.6 }
+  });
+}, 100);
+    
   } else {
     resultDiv.innerHTML = "💥 不正解！";
     resultDiv.className = "wrong";
