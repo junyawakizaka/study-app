@@ -80,8 +80,10 @@
 
 <body>
   <h1>問題アプリ</h1>
+  <button onclick="selectUnit('5-9')">5-9</button>
+  <button onclick="selectUnit('5-10')">5-10</button>
   <button onclick="selectUnit('6-1')">6-1</button>
-  <button onclick="selectUnit('6-2')">6-1</button>
+  <button onclick="selectUnit('6-2')">6-2</button>
   <br>
   <button onclick="showWeak()">苦手だけ</button>
   <button onclick="showAll()">すべて</button>
@@ -114,7 +116,31 @@
         { id: "q2-8", text: "$おんだん$な$きこう$", answer: ["川", "遊ぶ"] },
         { id: "q2-9", text: "$してつ$を$りよう$する", answer: ["川", "遊ぶ"] },
         { id: "q2-10", text: "$わたくしごと（しじ）$で#ことわる#", answer: ["川", "遊ぶ"] }
-      ]
+      ],
+      "5-9": [
+        { id: "q3-1", text: "#おおきな#$しゅっぱんしゃ$", answer: ["川", "遊ぶ"] },
+        { id: "q3-2", text: "ノートに#かき##とめる#", answer: ["川", "遊ぶ"] },
+        { id: "q3-3", text: "$てら$の#ふるい#$はか$", answer: ["川", "遊ぶ"] },
+        { id: "q3-4", text: "$しんかんせん$に#のる#", answer: ["川", "遊ぶ"] },
+        { id: "q3-5", text: "げき$だん$をつくる", answer: ["川", "遊ぶ"] },
+        { id: "q3-6", text: "$かいしゃ$で$じむ$をする", answer: ["川", "遊ぶ"] },
+        { id: "q3-7", text: "$そぼ$の$しゃしん$を#みる#", answer: ["川", "遊ぶ"] },
+        { id: "q3-8", text: "そん$ざい$を#たしかめる#", answer: ["川", "遊ぶ"] },
+        { id: "q3-9", text: "$ひよう$がかかる", answer: ["川", "遊ぶ"] },
+        { id: "q3-10", text: "$ゆうはん$の#あまり#", answer: ["川", "遊ぶ"] }
+      ],
+      "5-10": [
+        { id: "q4-1", text: "お$かね$を$よぶん$にもつ", answer: ["川", "遊ぶ"] },
+        { id: "q4-2", text: "$きゃく$を#まねく#", answer: ["川", "遊ぶ"] },
+        { id: "q4-3", text: "$いえ$に$しょうたい$する", answer: ["川", "遊ぶ"] },
+        { id: "q4-4", text: "#あかるい#$せいかく$", answer: ["川", "遊ぶ"] },
+        { id: "q4-5", text: "$かいが$をながめる", answer: ["川", "遊ぶ"] },
+        { id: "q4-6", text: "$がいこく$に$りゅうがく$する", answer: ["川", "遊ぶ"] },
+        { id: "q4-7", text: "$るすばん$をする", answer: ["川", "遊ぶ"] },
+        { id: "q4-8", text: "$ぼち$にお#まいり#する", answer: ["川", "遊ぶ"] },
+        { id: "q4-9", text: "$しかい$を#つとめる#", answer: ["川", "遊ぶ"] },
+        { id: "q4-10", text: "$かいぎ$の#あり#$かた$", answer: ["川", "遊ぶ"] }
+      ]          
     };
     let streak = 0;
     let currentUnit = "1";
