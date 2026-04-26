@@ -1,0 +1,73 @@
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 10px;
+      background: #f0f4f8;
+    }
+
+    /* タイトル */
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    /* 問題カード */
+    #question div {
+      background: white;
+      border-radius: 16px;
+      padding: 16px;
+      margin: 12px 0;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+    }
+
+    /* 問題文（ここが一番重要） */
+    #question p {
+      font-size: 20px;
+      /* ←大きく */
+      line-height: 1.6;
+      /* ←読みやすさUP */
+      margin-bottom: 12px;
+    }
+
+    /* ボタン */
+    button {
+      font-size: 16px;
+      padding: 10px 14px;
+      margin-right: 8px;
+      border-radius: 10px;
+      border: none;
+    }
+
+    /* 正解ボタン */
+    button[onclick*="true"] {
+      background: #4CAF50;
+      color: white;
+    }
+
+    /* 不正解ボタン */
+    button[onclick*="false"] {
+      background: #f44336;
+      color: white;
+    }
+
+    /* 上部ボタン */
+    button[onclick^="selectUnit"],
+    button[onclick^="show"] {
+      background: #2196F3;
+      color: white;
+    }
+
+    /* 下線 */
+    .kanji {
+      text-decoration: underline;
+      text-decoration-thickness: 3px;
+      /* 太くする */
+    }
+
+    /* 波線 */
+    .okurigana {
+      text-decoration: underline wavy;
+      text-decoration-thickness: 2px;
+    }
